@@ -1,72 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>spino</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Start</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- INTRO: coloca aquí tu GIF de arranque -->
-  <div class="intro" id="intro">
-    <!-- 🔁 RELLENA la ruta del GIF -->
-    <img src="explosão-meme.gif" alt="Intro">
-  </div>
-
-  <!-- ESCENARIO PRINCIPAL -->
-  <div class="stage">
-    <h1 id="title">SOMEBODY GET ME THROUGH THIS NIGHTMARE!!</h1>
-
-    <div class="spino-wrap">
-      <img class="spino" id="spino" src="spinosaurus.gif" alt="Spinosaurus">
-    </div>
-  </div>
-
-  <!-- AUDIO: arranca muteado, se desmutea si el gesto previo lo permite -->
-  <audio id="music" autoplay muted loop playsinline preload="auto">
-    <source src="Three Days Grace - Animal I Have Become.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-  </audio>
-
-  <script>
-    (function(){
-      const intro   = document.getElementById('intro');
-      const title   = document.getElementById('title');
-      const audio   = document.getElementById('music');
-      const INTRO_MS = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--intro-ms')) || 2500;
-
-      // 1) Mostrar INTRO y, tras el tiempo, ocultarla
-      setTimeout(() => {
-        intro.classList.add('hide');
-
-        // 2) Mostrar título suavemente
-        requestAnimationFrame(() => title.classList.add('show'));
-      }, INTRO_MS);
-
-      // 3) Intentar reproducir audio (el click en "inicio" habilita el gesto)
-      const tryPlay = () => {
-        const p = audio.play();
-        if (p && typeof p.then === 'function') {
-          p.then(() => {
-            audio.muted = false; // si el navegador lo permite, quita mute
-          }).catch((err) => {
-            // Si aún así lo bloquea, quedará muteado hasta el primer click en esta página
-            console.log('Autoplay bloqueado, esperando click dentro de index:', err);
-            window.addEventListener('click', () => {
-              audio.muted = false;
-              audio.play().catch(()=>{});
-            }, { once:true });
-          });
-        }
-      };
-      // Llamamos en cuanto cargue el DOM
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', tryPlay, { once:true });
-      } else {
-        tryPlay();
-      }
-    })();
-  </script>
+  <a href="index.html">inicio</a>
 </body>
 </html>
-
