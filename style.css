@@ -100,7 +100,7 @@ h1#title.show {
     object-fit: contain;
     animation: growIn 0.3s cubic-bezier(.2, .7, .2, 1) forwards;
     animation-delay: calc(var(--intro-ms, 2500) * 1ms + 300ms);
-    margin-left: 300px;
+    margin-left: auto;
 }
 
 /* Keyframes para el efecto "creciente desde el fondo" */
@@ -109,3 +109,4 @@ h1#title.show {
     50%  { opacity: .6; transform: scale(1.03); filter: blur(3px) brightness(1); }
     100% { opacity: 1; transform: scale(1); filter: blur(0) brightness(1); }
 }
+
