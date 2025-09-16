@@ -1,0 +1,111 @@
+/* === Fondo y scroll === */
+body {
+    background-color: #fff;   /* Fondo blanco */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;         /* 🚫 Sin scroll */
+}
+
+/* Imagen genérica (si la usas en otras partes) */
+img {
+    width: 700px;
+    display: block;
+    margin: auto;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: darkred;
+}
+
+/* Enlace "inicio" */
+a {
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    color: darkred;
+    font-size: 35px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid darkred;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: lightgrey;
+    margin-top: 400px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+a:hover {
+    background-color: darkred;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* ---------- Animaciones / transiciones ---------- */
+
+/* Overlay de intro: mantiene fondo blanco */
+.intro {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+    transition: opacity 0.1s ease;
+}
+
+.intro.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Título animado */
+h1#title {
+    opacity: 0;
+    transform: translateY(-12px);
+    filter: blur(3px);
+    transition: opacity 0.8s ease 0.1s,
+                transform 0.8s ease 0.1s,
+                filter 0.8s ease 0.1s;
+}
+
+h1#title.show {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Contenedor del Spino */
+.spino-wrap {
+    position: relative;
+    width: min(92vw, 900px);
+    aspect-ratio: 16/9;
+    display: grid;
+    place-items: center;
+}
+
+/* GIF del Spino al 70% del ancho y transición más rápida */
+.spino {
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transform: scale(.7) translateZ(0);
+    filter: blur(8px) brightness(.8);
+    object-fit: contain;
+    animation: growIn 0.3s cubic-bezier(.2, .7, .2, 1) forwards;
+    animation-delay: calc(var(--intro-ms, 2500) * 1ms + 300ms);
+    margin-left: 300px;
+}
+
+/* Keyframes para el efecto "creciente desde el fondo" */
+@keyframes growIn {
+    0%   { opacity: 0; transform: scale(.7); filter: blur(8px) brightness(.8); }
+    50%  { opacity: .6; transform: scale(1.03); filter: blur(3px) brightness(1); }
+    100% { opacity: 1; transform: scale(1); filter: blur(0) brightness(1); }
+}
